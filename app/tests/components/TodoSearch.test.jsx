@@ -15,10 +15,9 @@ describe('TodoSearch', () => {
     it('should call onSearch with entered input text', () => {
         let spy = expect.createSpy();
         let todoSearch = TestUtils.renderIntoDocument(<TodoSearch onSearch={ spy } />);
+        
         let searchText = 'Check';
-
         todoSearch.refs.searchText.value = searchText;
-
         TestUtils.Simulate.change(todoSearch.refs.searchText);
         
         expect(spy).toHaveBeenCalledWith(false, 'Check');
@@ -30,7 +29,6 @@ describe('TodoSearch', () => {
         let todoSearch = TestUtils.renderIntoDocument(<TodoSearch onSearch={ spy } />);
 
         todoSearch.refs.showCompleted.checked = true;
-
         TestUtils.Simulate.change(todoSearch.refs.showCompleted);
 
         expect(spy).toHaveBeenCalledWith(true, '');

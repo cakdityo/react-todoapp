@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uuid from 'uuid';
 
 import TodoList from 'TodoList';
 import AddTodo from 'AddTodo';
@@ -17,12 +18,12 @@ export default class TodoApp extends Component {
             searchText: '',
             todos: [
                 {
-                    id: 1,
+                    id: uuid(),
                     text: 'Walk the dog',
                     completed: false
                 },
                 {
-                    id: 2,
+                    id: uuid(),
                     text: 'Clean the yard',
                     completed: false
                 }
@@ -33,7 +34,7 @@ export default class TodoApp extends Component {
     handleAddTodo(text) {
         let { todos } = this.state;
         this.setState({
-            todos: todos.concat({ id: Math.floor(Math.random() * 1000), text })
+            todos: [...this.state.todos, { id: uuid(), text }]
         });
     }
  
