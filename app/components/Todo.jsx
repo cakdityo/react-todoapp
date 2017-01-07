@@ -4,8 +4,9 @@ export default class Todo extends Component {
     render(){
         let { todo } = this.props;
         return (
-            <div>
-                { todo.id }. { todo.text }
+            <div className={ todo.completed ? 'completed' : '' } onClick={ () => { this.props.onToggle(todo.id) } }>
+                <input type="checkbox" checked={ todo.completed } readOnly />
+                { todo.text }
             </div>
         );
     }

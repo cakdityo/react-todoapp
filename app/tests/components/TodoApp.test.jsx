@@ -22,4 +22,25 @@ describe('TodoApp', () => {
         expect(todoApp.state.todos[0].text).toBe('Swimming');
     });
 
+    it('should toggle todo complete for the given id', () => {
+        let todoApp = TestUtils.renderIntoDocument(<TodoApp />);
+        todoApp.setState({
+            todos: [
+                {
+                    id: 1,
+                    text: 'Swimming',
+                    completed: false
+                },
+                {
+                    id: 2,
+                    text: 'Sleeping',
+                    completed: true
+                }
+            ]
+        });
+        expect(todoApp.state.todos[1].completed).toBe(true);
+        todoApp.handleToggleTodo(2);
+        expect(todoApp.state.todos[1].completed).toBe(false);
+    });
+
 });

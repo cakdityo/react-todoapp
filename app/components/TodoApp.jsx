@@ -11,6 +11,7 @@ export default class TodoApp extends Component {
         super();
 
         this.handleAddTodo = this.handleAddTodo.bind(this);
+        this.handleToggleTodo = this.handleToggleTodo.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
         
         this.state = {
@@ -34,7 +35,22 @@ export default class TodoApp extends Component {
     handleAddTodo(text) {
         let { todos } = this.state;
         this.setState({
-            todos: [...this.state.todos, { id: uuid(), text }]
+            todos: [
+                ...this.state.todos,
+                { id: uuid(), text, completed: false }
+            ]
+        });
+    }
+
+    handleToggleTodo(id) {
+        let { todos } = this.state;
+        this.setState({
+            todos: todos.map((todo) => {
+                if (todo.id === id) {
+                    todo.completed = !todo.completed;
+                }
+                return todo;
+            })
         });
     }
  
@@ -47,7 +63,7 @@ export default class TodoApp extends Component {
         return(
             <div>
                 <TodoSearch onSearch={ this.handleSearch } />
-                <TodoList todos={ todos } />
+                <TodoList todos={ todos } onToggle={ this.handleToggleTodo } />
                 <AddTodo onAddTodo={ this.handleAddTodo } />
             </div>
         )

@@ -8,7 +8,7 @@ export default class TodoList extends Component {
 
         let renderTodos = () => {
             return todos.map((todo) => {
-                return (<Todo key={ todo.id } todo={ todo } />)
+                return (<Todo key={ todo.id } onToggle={ this.props.onToggle } todo={ todo } />)
             });
         }
 
